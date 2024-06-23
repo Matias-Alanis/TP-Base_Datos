@@ -1,0 +1,117 @@
+//Crear Base de Datos
+
+CREATE SCHEMA IF NOT EXISTS Peliculas;
+CREATE DATABASE Peliculas;
+
+//Crear 3 tablas: peliculas directores usuarios 
+USE Peliculas;
+
+
+
+CREATE TABLE Peliculas ( 
+
+id INT AUTO_INCREMENT PRIMARY KEY,
+titulo VARCHAR(255) NOT NULL,
+genero VARCHAR(50) NOT NULL,
+year INT NOT NULL,
+estrellas INT NOT NULL,
+directores_id INT,
+FOREIGN KEY (directores_id) REFERENCES Directores(id)
+);
+
+CREATE TABLE Directores(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    edad INT NOT NULL,
+    pais_origen VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Usuarios(
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    contraseña VARCHAR(10) NOT NULL,
+    fecha_nac INT NOT NULL,
+    pais VARCHAR(255) NOT NULL
+);
+
+//Insertar 15 registros 
+
+INSERT INTO Peliculas (titulo, genero, year, estrellas, directores_id)
+VALUES 
+('El Padrino', 'drama', 1972, 9, 1),
+('Star Wars', 'ciencia ficción', 1977, 8, 2),
+('E.T., el extraterrestre', 'ciencia ficción', 1982, 7, 1),
+('Indiana Jones y la última cruzada', 'aventura', 1989, 8, 1),
+('Titanic', 'romance', 1997, 7, 3),
+('El Señor de los Anillos: La Comunidad del Anillo', 'fantasía', 2001, 9, 4),
+('Harry Potter y la Piedra Filosofal', 'fantasía', 2001, 8, 5),
+('Inglourious Basterds', 'guerra', 2009, 8, 6),
+('Mad Max: Fury Road', 'acción', 2015, 8, 7),
+('La Reina Roja', 'biografía', 2018, 8, 8),
+('Parásitos', 'comedia', 2019, 7, 9),
+('Joker', 'drama', 2019, 8, 10),
+('Tenet', 'ciencia ficción', 2020, 7, 11),
+('Dune', 'ciencia ficción', 2021, 8, 12),
+('Spider-Man: No Way Home', 'superhéroes', 2021, 8, 13),
+('Encanto', 'animación', 2021, 7, 14);
+
+INSERT INTO Directores (nombre, apellido, edad, pais_origen)
+VALUES 
+('Steven', 'Spielberg', 76, 'Estados Unidos'),
+('George', 'Lucas', 78, 'Estados Unidos'),
+('Steven', 'Spielberg', 76, 'Estados Unidos'),
+('Steven', 'Spielberg', 76, 'Estados Unidos'),
+('James', 'Cameron', 64, 'Canadá'),
+('Peter', 'Jackson', 59, 'Nueva Zelanda'),
+('Chris', 'Weitz', 53, 'Estados Unidos'),
+('Quentin', 'Tarantino', 56, 'Estados Unidos'),
+('George', 'Miller', 77, 'Australia'),
+('Bong', 'Joon-ho', 54, 'Corea del Sur'),
+('Todd', 'Phillips', 61, 'Estados Unidos'),
+('Christopher', 'Nolan', 51, 'Reino Unido'),
+('Denis', 'Villeneuve', 53, 'Canadá'),
+('Jon', 'Watson', 44, 'Estados Unidos'),
+('Jared', 'Bush', 43, 'Estados Unidos');
+
+INSERT INTO Usuarios (nombre, apellido, email, contraseña, fecha_nac, pais)
+VALUES 
+('Juan', 'Pérez', 'juan.perez@example.com', '1234567890', 1990, 'España'),
+('María', 'García', 'maria.garcia@example.com', 'abcdefghij', 1985, 'México'),
+('Carlos', 'Rodríguez', 'carlos.rodriguez@example.com', 'klmnopqrst', 1992, 'Argentina'),
+('Ana', 'López', 'ana.lopez@example.com', 'uvwxyz012', 1988, 'Brasil'),
+('Pedro', 'Martínez', 'pedro.martinez@example.com', '3456789012', 1995, 'Chile'),
+('Sofía', 'Fernández', 'sofia.fernandez@example.com', 'abcdefghijkl', 1991, 'Colombia'),
+('Manuel', 'González', 'manuel.gonzalez@example.com', 'mnopqrstuvwxyz', 1989, 'Perú'),
+('Laura', 'Torres', 'laura.torres@example.com', '1234567890', 1994, 'Venezuela'),
+('Héctor', 'Gómez', 'hector.gomez@example.com', 'abcdefghijk', 1986, 'Uruguay'),
+('Isabel', 'Morales', 'isabel.morales@example.com', 'lmnopqrstu', 1993, 'Panamá'),
+('Rafael', 'Jiménez', 'rafael.jimenez@example.com', 'vwxystuv', 1987, 'Costa Rica'),
+('Carmen', 'Luna', 'carmen.luna@example.com', '2345678901', 1996, 'Guatemala'),
+('Gabriel', 'Ortiz', 'gabriel.ortiz@example.com', 'bcdefghijkl', 1984, 'El Salvador'),
+('Patricia', 'Ramírez', 'patricia.ramirez@example.com', 'mno5432109', 1997, 'Honduras'),
+('Alejandro', 'Guzmán', 'alejandro.guzman@example.com', 'pqr67890abc', 1982, 'Nicaragua'),
+('Beatriz', 'Ruiz', 'beatriz.ruiz@example.com', 'xyz1234567', 1998, 'República Dominicana');
+
+
+//Consultas
+
+SELECT * FROM Peliculas WHERE year >= 2010;
+SELECT * FROM Peliculas WHERE year < 2010;
+SELECT * FROM Peliculas WHERE year = 2024;
+SELECT * FROM Peliculas WHERE genero = 'terror';
+SELECT * FROM Peliculas WHERE genero = 'comedia';
+SELECT * FROM Peliculas WHERE genero = 'acción';
+SELECT * FROM Peliculas WHERE year < 2022 AND genero = 'comedia';
+SELECT * FROM Peliculas WHERE estrellas = 5;
+SELECT * FROM Peliculas WHERE estrellas < 3;
+SELECT * FROM Peliculas WHERE genero = 'acción' AND estrellas >= 4;
+
+SELECT * FROM Directores WHERE edad BETWEEN 25 AND 40;
+SELECT * FROM Directores WHERE nombre = 'jose';
+SELECT * FROM Directores WHERE pais_origen = 'Argentina';
+SELECT * FROM Directores WHERE pais_origen = 'Inglaterra';
+SELECT * FROM Directores WHERE pais_origen = 'Alemania' AND edad > 35;
+
