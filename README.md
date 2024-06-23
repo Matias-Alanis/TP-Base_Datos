@@ -5,7 +5,8 @@ Consignas
 * Crear las 3 tablas que se representan en las imágenes con sus respectivos atributos, definir los tipos de datos y las claves primarias
 * Insertar 15 registros en cada una de ellas
 
-Tablas: ![image](https://github.com/Matias-Alanis/TP-Base_Datos/assets/111240990/7d0ec20f-653e-4b58-8e17-125c37199a74)
+Tablas: 
+![image](https://github.com/Matias-Alanis/TP-Base_Datos/assets/111240990/7d0ec20f-653e-4b58-8e17-125c37199a74)
 
 Realizar las siguientes consultas:
 * consultar las películas creadas desde el 2010
